@@ -60,8 +60,14 @@ public class ProductInfoTest extends BaseTest {
 	public void productInfoTest() {
 		searchResPage = accPage.doSearch("macbook");
 		productInfoPage = searchResPage.selectProduct("MacBook Pro");
-		Map<String, String> actProductData= productInfoPage.getProductData();
-		System.out.println(actProductData);
+		Map<String, String> productActualData = productInfoPage.getProductData();
+		System.out.println(productActualData);
+		softAssert.assertEquals(productActualData.get("Brand"), "Apple");
+		softAssert.assertEquals(productActualData.get("Availability"), "In Stock");
+		softAssert.assertEquals(productActualData.get("productheader"), "MacBook Pro");
+		softAssert.assertEquals(productActualData.get("price"), "$2,000.00");
+		softAssert.assertEquals(productActualData.get("Reward Points"), "800");
+		softAssert.assertAll();
 	}
 
 }

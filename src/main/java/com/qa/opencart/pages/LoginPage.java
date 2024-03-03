@@ -57,7 +57,7 @@ public class LoginPage {
 		
 	}
 	
-	public RegisterPage doClickRegister() {
+	public RegisterPage navigateToRegisterPage() {
 		eleUtil.clickElementWhenReady(registerLink, AppConstants.MEDIUM_TIME_OUT);
 		return new RegisterPage(driver);
 	}
