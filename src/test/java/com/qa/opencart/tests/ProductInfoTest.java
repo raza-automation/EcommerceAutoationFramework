@@ -8,6 +8,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
+import com.qa.opencart.constants.AppConstants;
+import com.qa.opencart.utils.ExcelUtil;
 
 public class ProductInfoTest extends BaseTest {
 
@@ -48,7 +50,12 @@ public class ProductInfoTest extends BaseTest {
 		};
 	}
 	
-	@Test(dataProvider = "productImageTestData")
+	@DataProvider
+	public Object[][] getProdImageSheetTestData() {
+		return ExcelUtil.getTestData(AppConstants.PRODUCTINFO_SHEET_NAME);
+	}
+	
+	@Test(dataProvider = "getProdImageSheetTestData")
 	public void productImagesCountTest(String searchKey, String productName, int expProductImagesCount) {
 		searchResPage = accPage.doSearch(searchKey);
 		productInfoPage = searchResPage.selectProduct(productName);

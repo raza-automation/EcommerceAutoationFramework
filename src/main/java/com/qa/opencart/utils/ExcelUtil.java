@@ -15,31 +15,33 @@ public class ExcelUtil {
 	public static Workbook book;
 	public static Sheet sheet;
 
-	public void getTestData(String sheetName) {
-		System.out.println("Reading the data from sheet : " + sheetName);
+	public static Object[][] getTestData(String sheetName) {
+
+		System.out.println("reading the data from sheet: " + sheetName);
 
 		Object data[][] = null;
 
 		try {
 			FileInputStream ip = new FileInputStream(TEST_DATA_SHEET_PATH);
-			try {
-				book = WorkbookFactory.create(ip);
-				sheet = book.getSheet(sheetName);
+			book = WorkbookFactory.create(ip);
+			sheet = book.getSheet(sheetName);
 
-				data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
+			data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
 
-				for (int i = 0; i < sheet.getLastRowNum(); i++) {
-					for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
-						data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
-					}
+			for (int i = 0; i < sheet.getLastRowNum(); i++) {
+				for (int j = 0; j < sheet.getRow(0).getLastCellNum(); j++) {
+					data[i][j] = sheet.getRow(i + 1).getCell(j).toString();
 				}
-
-			} catch (EncryptedDocumentException | IOException e) {
-				e.printStackTrace();
 			}
+
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		return data;
+
 	}
+
 }

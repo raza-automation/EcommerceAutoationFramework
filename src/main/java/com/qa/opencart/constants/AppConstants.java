@@ -22,5 +22,9 @@ public class AppConstants {
 	public static final int LONG_TIME_OUT = 15;
 	public static final int BIG_LONG_TIME_OUT = 20;
 	
+	// ********** Sheet Names ***********//
+	
+	public static final String REGISTER_SHEET_NAME = "register";
+	public static final String PRODUCTINFO_SHEET_NAME = "ProductInfoImageTest";
 
 }
